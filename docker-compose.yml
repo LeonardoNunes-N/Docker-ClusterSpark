@@ -74,8 +74,8 @@ services:
     env_file:
     - .env
     volumes:
-    - C:\Users\leona\Documents\docker_estudo\db-data:/var/lib/postgresql/data/
-    - C:\Users\leona\Documents\docker_estudo\init.sql:/docker-entrypoint-initdb.d/init.sql
+    - .\db-data:/var/lib/postgresql/data/
+    - .\init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       case-network:
         ipv4_address: 192.168.1.22
