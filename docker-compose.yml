@@ -1,0 +1,91 @@
+
+version: '3'
+
+services:
+  spark-master:
+    container_name: da-spark-master
+    build: .
+    image: da-spark-image:latest
+    hostname: spark-master
+    entrypoint: ['./entrypoint.sh', 'master']
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - ./notebooks:/home/notebooks
+      - ./book_data:/opt/spark/data
+      - ./spark_apps:/opt/spark/apps
+      - spark-logs:/opt/spark/spark-events
+      - ./id_docker.pub:/root/.ssh/authorized_keys
+    env_file:
+      - .env.spark
+    ports:
+      - '9090:8080'
+      - '7077:7077'  
+      - '2222:22'  # Porta SSH
+    networks:
+      case-network:
+        ipv4_address: 192.168.1.20
+
+    mem_limit: 2g   # Limite de 2 GB de RAM
+    cpus: 2       # Limite de 2 CPUs
+  
+  spark-history-server:
+    container_name: da-spark-history
+    build: .
+    image: da-spark-image:latest
+    entrypoint: ['./entrypoint.sh', 'history']
+    depends_on:
+      - spark-master
+    env_file:
+      - .env.spark
+    volumes:
+      - spark-logs:/opt/spark/spark-events
+    ports:
+      - '18080:18080'
+    networks:
+      case-network:
+        ipv4_address: 192.168.1.21
+
+  spark-worker:
+    # container_name: da-spark-worker
+    build: .
+    image: da-spark-image:latest
+    entrypoint: ['./entrypoint.sh', 'worker']
+    depends_on:
+      - spark-master
+    env_file:
+      - .env.spark
+    volumes:
+      - ./book_data:/opt/spark/data
+      - ./spark_apps:/opt/spark/apps
+      - spark-logs:/opt/spark/spark-events
+    mem_limit: 4g   # Limite de 2 GB de RAM
+    cpus: 4       # Limite de 1,5 CPUs
+    networks:
+      - case-network
+ 
+  database:
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
+    env_file:
+    - .env
+    volumes:
+    - C:\Users\leona\Documents\docker_estudo\db-data:/var/lib/postgresql/data/
+    - C:\Users\leona\Documents\docker_estudo\init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      case-network:
+        ipv4_address: 192.168.1.22
+
+volumes:
+  spark-logs:
+
+networks:
+  case-network:
+    driver: bridge
+    ipam: 
+      config:
+        - subnet: 192.168.1.0/24
