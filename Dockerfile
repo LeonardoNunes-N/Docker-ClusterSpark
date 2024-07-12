@@ -1,4 +1,4 @@
-FROM python:3.11-bullseye as spark-base
+FROM python:3.11-bullseye AS spark-base
 
 ARG SPARK_VERSION=3.4.3
 
@@ -31,9 +31,9 @@ RUN pip3 install -r requirements.txt
 ENV PATH="/opt/spark/sbin:/opt/spark/bin:${PATH}"
 ENV SPARK_HOME="/opt/spark"
 ENV SPARK_MASTER="spark://spark-master:7077"
-ENV SPARK_MASTER_HOST spark-master
-ENV SPARK_MASTER_PORT 7077
-ENV PYSPARK_PYTHON python3
+ENV SPARK_MASTER_HOST=spark-master
+ENV SPARK_MASTER_PORT=7077
+ENV PYSPARK_PYTHON=python3
 
 COPY conf/spark-defaults.conf "$SPARK_HOME/conf"
 
