@@ -1,4 +1,5 @@
-ipython
+ipython 
+jupyter
 pandas
 pyarrow
 numpy
