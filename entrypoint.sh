@@ -6,6 +6,8 @@ echo "SPARK_WORKLOAD: $SPARK_WORKLOAD"
 
 if [ "$SPARK_WORKLOAD" == "master" ];
 then 
+  #Criacao de pasta para notebooks
+  mkdir /home/notebooks 
   # Instalação do OpenSSH Server
   apt-get update
   apt-get install -y openssh-server
