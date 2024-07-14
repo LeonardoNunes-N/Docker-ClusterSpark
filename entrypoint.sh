@@ -9,7 +9,9 @@ then
   export $(cat /root/.ssh/environment | xargs) &
   # Inicializacao repositorio git 
   cd $CASEDIR
-  git init
+  git init 
+  git config --global user.name "${GIT_USER_NAME}" 
+  git config --global user.email "${GIT_USER_EMAIL}" 
   # Instalação do OpenSSH Server
   apt-get update
   apt-get install -y openssh-server
@@ -34,6 +36,7 @@ then
 
   service ssh start
 
+  cd
   # Inicia o nó mestre do Spark
   start-master.sh -p 7077 
 

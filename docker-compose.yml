@@ -22,7 +22,6 @@ services:
       - ./.env:/root/.ssh/environment
     env_file:
       - .env.spark
-      - .env
     ports:
       - '9090:8080'
       - '7077:7077'  
