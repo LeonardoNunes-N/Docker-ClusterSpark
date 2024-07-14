@@ -64,7 +64,7 @@ services:
     volumes:
       - ./book_data:/opt/spark/data
       - ./spark_apps:/opt/spark/apps
-      - spark-logs:/opt/spark/spark-events
+      - ./spark-logs:/opt/spark/spark-events
     mem_limit: 4g   # Limite de 2 GB de RAM
     cpus: 4       # Limite de 1,5 CPUs
     networks:

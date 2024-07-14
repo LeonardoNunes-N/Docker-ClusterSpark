@@ -1,7 +1,7 @@
 .env
 /db-data/
 /book_data/
-/notebooks/ 
 /spark_apps/
 id_docker.pub
 config.json
+.env.spark
