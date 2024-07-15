@@ -63,7 +63,7 @@ services:
     mem_limit: 5g   # Limite de 2 GB de RAM
     cpus: 4       # Limite de 1,5 CPUs
     networks:
-      - case-network
+      - cluster-network
 
 volumes:
   spark-logs:
@@ -74,3 +74,4 @@ networks:
     ipam: 
       config:
         - subnet: 192.168.1.0/24
+    name: cluster-network
