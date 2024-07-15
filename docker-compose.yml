@@ -28,7 +28,7 @@ services:
         ipv4_address: 192.168.1.20
 
     mem_limit: 2g   # Limite de 2 GB de RAM
-    cpus: 2       # Limite de 2 CPUs
+    cpus: 1       # Limite de 2 CPUs
   
   spark-history-server:
     container_name: da-spark-history
@@ -60,7 +60,7 @@ services:
       - ./book_data:/opt/spark/data
       - ./spark_apps:/opt/spark/apps
       - spark-logs:/opt/spark/spark-events
-    mem_limit: 6g   # Limite de 2 GB de RAM
+    mem_limit: 5g   # Limite de 2 GB de RAM
     cpus: 4       # Limite de 1,5 CPUs
     networks:
       - case-network
