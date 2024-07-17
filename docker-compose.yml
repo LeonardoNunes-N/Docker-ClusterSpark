@@ -18,7 +18,7 @@ services:
       - ./spark_apps:/opt/spark/apps
       - spark-logs:/opt/spark/spark-events
     env_file:
-      - .env.spark 
+      - C:\Users\leona\Documents\Projetos_Docker\Spark\docker_cluster\.env.spark 
     ports:
       - '9090:8080'
       - '7077:7077'  
@@ -38,7 +38,7 @@ services:
     depends_on:
       - spark-master
     env_file:
-      - .env.spark
+      - C:\Users\leona\Documents\Projetos_Docker\Spark\docker_cluster\.env.spark
     volumes:
       - spark-logs:/opt/spark/spark-events
     ports:
@@ -55,13 +55,15 @@ services:
     depends_on:
       - spark-master
     env_file:
-      - .env.spark
+      - C:\Users\leona\Documents\Projetos_Docker\Spark\docker_cluster\.env.spark
     volumes:
       - ./book_data:/opt/spark/data
       - ./spark_apps:/opt/spark/apps
       - spark-logs:/opt/spark/spark-events
     mem_limit: 5g   # Limite de 2 GB de RAM
     cpus: 4       # Limite de 1,5 CPUs
+    ports: 
+      - 8081:8081
     networks:
       - cluster-network
 
