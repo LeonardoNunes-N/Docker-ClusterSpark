@@ -22,10 +22,10 @@ Para configuracoes SSH somente na master foi necessario adicionar linhas de coma
 
 O ssh no conteiner Docker tem suas peculiaridades, sendo necessario configuracao nas pastas **/etc/ssh/sshd_config, /etc/pam.d/sshd e /etc/profile**
 
-Gerei uma chave publica ssh para a conexao host e container, havendo mais seguranca na minha conexao, criei uma pasta /ssh/authorized_key que possui o valor da chave, é exigido tambem configuracao de permissionamento rwx.
+Gerei uma chave publica ssh para a conexao host e container, havendo mais seguranca na minha conexao, criei uma pasta **/ssh/authorized_key** que possui o valor da chave, é exigido tambem configuracao de permissionamento rwx.
 
-chmod 600: O proprietário do arquivo tem permissão total para ler e escrever no arquivo (rw-) e nenhum acesso é permitido para grupos de usuários ou para outros (---).
-chmod700: O proprietário do arquivo tem permissão total para ler, escrever e executar o arquivo (rwx) e nenhum acesso é permitido para grupos de usuários ou para outros (---).
+- chmod 600: O proprietário do arquivo tem permissão total para ler e escrever no arquivo (rw-) e nenhum acesso é permitido para grupos de usuários ou para outros (---).
+- chmod700: O proprietário do arquivo tem permissão total para ler, escrever e executar o arquivo (rwx) e nenhum acesso é permitido para grupos de usuários ou para outros (---).
 
 ## Rede Personalizada 
 
