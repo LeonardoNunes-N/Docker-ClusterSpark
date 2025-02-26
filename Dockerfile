@@ -1,6 +1,6 @@
 FROM python:3.11-bullseye AS spark-base
 
-ARG SPARK_VERSION=3.4.3
+ARG SPARK_VERSION=3.4.4
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
