@@ -6,8 +6,6 @@ services:
     build: .
     image: da-spark-image:latest
     entrypoint: ['./entrypoint.sh', 'worker']
-    depends_on:
-      - spark-master
     env_file:
       - .env.spark
     volumes:
@@ -16,8 +14,6 @@ services:
       - spark-logs:/opt/spark/spark-events
     mem_limit: 1g   # Limite de 2 GB de RAM
     cpus: 0.5       # Limite de 1,5 CPUs
-    ports: 
-      - 8081:8081
     networks:
       - cluster-network
 
