@@ -1,3 +1,4 @@
 /book_data/
 /spark_apps/
 /spark-logs
+.env
